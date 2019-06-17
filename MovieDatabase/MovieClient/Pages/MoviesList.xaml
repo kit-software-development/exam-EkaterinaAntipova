@@ -1,0 +1,35 @@
+﻿<Page x:Class="MovieClient.Pages.MoviesList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MovieClient.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MoviesList">
+
+    <Grid>
+        <StackPanel>
+            <Grid>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="5"  Text="Поиск:"></TextBlock>
+                <TextBox Margin="5" Width="300" Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            </StackPanel>
+                <Button Width="100" Height="25" Background="White" BorderThickness="2"
+                        HorizontalAlignment="Right" Margin="5"
+                        Command="{Binding RefreshCommand}">Обновить</Button>
+            </Grid>
+            <ListView ItemsSource="{Binding Films}" SelectedItem="{Binding SelectedFilm}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock FontStretch="Medium" FontSize="18" Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Date.Year, StringFormat=Год выпуска: {0}}"/>
+                            <TextBlock Text="{Binding Country, StringFormat=Страна: {0}}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>
